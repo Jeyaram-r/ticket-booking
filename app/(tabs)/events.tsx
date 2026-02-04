@@ -26,7 +26,7 @@ export default function Events() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#0f172a", padding: 16 },
+  container: { flex: 1, backgroundColor: "#0f172a", padding: 16 ,marginTop:50},
   heading: { color: "#fff", fontSize: 24, marginBottom: 16 },
   card: {
     backgroundColor: "#1e293b",

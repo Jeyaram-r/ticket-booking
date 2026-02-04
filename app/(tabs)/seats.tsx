@@ -41,7 +41,7 @@ export default function Seats() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#0f172a", padding: 16 },
+  container: { flex: 1, backgroundColor: "#0f172a", padding: 16,marginTop:50 },
   heading: { color: "#fff", fontSize: 24, marginBottom: 16 },
   grid: { flexDirection: "row", flexWrap: "wrap" },
   seat: {
