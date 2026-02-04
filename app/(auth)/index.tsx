@@ -4,11 +4,13 @@ import {
   TextInput,
   Pressable,
   Alert,
-  StyleSheet,
+  KeyboardAvoidingView,
+  ScrollView,
 } from "react-native";
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import styles from "./style";
 
 const BASE_URL = "http://192.168.29.86:5000/api/auth";
 
@@ -49,7 +51,7 @@ export default function Login() {
       await AsyncStorage.setItem("token", data.token);
       await AsyncStorage.setItem("user", JSON.stringify(data.user));
 
-      router.replace("/(tabs)/home");
+      router.replace("/(tabs)/home/home");
     } catch (error) {
       Alert.alert("Error", "Unable to login");
     } finally {
@@ -58,6 +60,18 @@ export default function Login() {
   };
 
   return (
+    <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={"padding"}
+      >
+        <ScrollView
+          style={{ flex: 1 }}
+          contentContainerStyle={{
+            flexGrow: 1,
+          }}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
     <View style={styles.container}>
       <Text style={styles.title}>🎟 Ticket Booking</Text>
       <Text style={styles.subtitle}>Login to continue</Text>
@@ -89,50 +103,11 @@ export default function Login() {
       <Pressable onPress={() => router.push("/(auth)/Register")}>
         <Text style={styles.link}>Create new account</Text>
       </Pressable>
-    </View>
+       </View>
+      </ScrollView>
+      </KeyboardAvoidingView>
+   
+    
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 24,
-    backgroundColor: "#fff",
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "700",
-    textAlign: "center",
-  },
-  subtitle: {
-    textAlign: "center",
-    color: "#666",
-    marginBottom: 30,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 10,
-    padding: 14,
-    marginBottom: 15,
-    fontSize: 16,
-  },
-  button: {
-    backgroundColor: "#000",
-    padding: 15,
-    borderRadius: 10,
-    marginTop: 5,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    textAlign: "center",
-    fontWeight: "600",
-  },
-  link: {
-    textAlign: "center",
-    marginTop: 20,
-    color: "#007AFF",
-  },
-});

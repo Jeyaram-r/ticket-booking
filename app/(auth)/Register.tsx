@@ -3,6 +3,8 @@ import {
   Text,
   TextInput,
   Pressable,
+  KeyboardAvoidingView,
+  ScrollView,
   Alert,
   StyleSheet,
 } from "react-native";
@@ -55,6 +57,15 @@ export default function Register() {
   };
 
   return (
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={"padding"}>
+    <ScrollView
+      style={{ flex: 1 }}
+      contentContainerStyle={{
+        flexGrow: 1,
+      }}
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
+    >
     <View style={styles.container}>
       <Text style={styles.title}>Create Account</Text>
 
@@ -83,7 +94,10 @@ export default function Register() {
       <Pressable onPress={() => router.back()}>
         <Text style={styles.link}>Back to Login</Text>
       </Pressable>
-    </View>
+      </View>
+       </ScrollView>
+  </KeyboardAvoidingView>
+    
   );
 }
 
